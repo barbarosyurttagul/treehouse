@@ -11,6 +11,7 @@ on:
 
 jobs:
   build:
+    name: dotnet-build
     runs-on: ubuntu-latest
 
     steps:
