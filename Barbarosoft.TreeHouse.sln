@@ -1,0 +1,83 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34525.116
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1EA9706B-D2A9-4F09-BB5C-0827F2BC5AC2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A811EC6E-1053-49EF-9848-B8C1B8A974BE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Barbarosoft.TreeHouse.Domain.Model", "src\Barbarosoft.TreeHouse.Domain.Model\Barbarosoft.TreeHouse.Domain.Model.csproj", "{E45F26F8-BBD8-42C8-870F-F9EDBA365DCB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Barbarosoft.TreeHouse.Domain.Ports", "src\Barbarosoft.TreeHouse.Domain.Ports\Barbarosoft.TreeHouse.Domain.Ports.csproj", "{2F04D0C8-6E97-44F7-96DF-B8D86EBAB110}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Barbarosoft.TreeHouse.Repository.SqlRepository", "src\Barbarosoft.TreeHouse.Repository.SqlRepository\Barbarosoft.TreeHouse.Repository.SqlRepository.csproj", "{E86FFD21-8970-4D8D-8285-6032C840133E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Barbarosoft.TreeHouse.Service", "src\Barbarosoft.TreeHouse.Service\Barbarosoft.TreeHouse.Service.csproj", "{5F32B101-D2A2-41EB-984C-8D2F5E297619}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{ABF534CD-C52D-4936-9DC8-73E90C256969}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Barbarosoft.TreeHouse.WebApi.Tests", "tests\Barbarosoft.TreeHouse.WebApi.Tests\Barbarosoft.TreeHouse.WebApi.Tests.csproj", "{B16FBAB4-9865-4238-A73E-35C9B7704161}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Barbarosoft.TreeHouse.Service.Tests", "tests\Barbarosoft.TreeHouse.Service.Tests\Barbarosoft.TreeHouse.Service.Tests.csproj", "{6311D283-9147-45B7-897E-72E27F829644}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Barbarosoft.TreeHouse.Repository.SqlRepository.Tests", "tests\Barbarosoft.TreeHouse.Repository.SqlRepository.Tests\Barbarosoft.TreeHouse.Repository.SqlRepository.Tests.csproj", "{5277EDFE-EB9E-4645-AA69-229E436D5AA7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Barbarosoft.TreeHouse.WebApi", "src\Barbarosoft.TreeHouse.WebApi\Barbarosoft.TreeHouse.WebApi.csproj", "{EC202763-09A8-4C2B-94B6-163E72EEC872}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E45F26F8-BBD8-42C8-870F-F9EDBA365DCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E45F26F8-BBD8-42C8-870F-F9EDBA365DCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E45F26F8-BBD8-42C8-870F-F9EDBA365DCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E45F26F8-BBD8-42C8-870F-F9EDBA365DCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F04D0C8-6E97-44F7-96DF-B8D86EBAB110}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F04D0C8-6E97-44F7-96DF-B8D86EBAB110}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F04D0C8-6E97-44F7-96DF-B8D86EBAB110}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F04D0C8-6E97-44F7-96DF-B8D86EBAB110}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E86FFD21-8970-4D8D-8285-6032C840133E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E86FFD21-8970-4D8D-8285-6032C840133E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E86FFD21-8970-4D8D-8285-6032C840133E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E86FFD21-8970-4D8D-8285-6032C840133E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F32B101-D2A2-41EB-984C-8D2F5E297619}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F32B101-D2A2-41EB-984C-8D2F5E297619}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F32B101-D2A2-41EB-984C-8D2F5E297619}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F32B101-D2A2-41EB-984C-8D2F5E297619}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B16FBAB4-9865-4238-A73E-35C9B7704161}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B16FBAB4-9865-4238-A73E-35C9B7704161}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B16FBAB4-9865-4238-A73E-35C9B7704161}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B16FBAB4-9865-4238-A73E-35C9B7704161}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6311D283-9147-45B7-897E-72E27F829644}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6311D283-9147-45B7-897E-72E27F829644}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6311D283-9147-45B7-897E-72E27F829644}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6311D283-9147-45B7-897E-72E27F829644}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5277EDFE-EB9E-4645-AA69-229E436D5AA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5277EDFE-EB9E-4645-AA69-229E436D5AA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5277EDFE-EB9E-4645-AA69-229E436D5AA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5277EDFE-EB9E-4645-AA69-229E436D5AA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC202763-09A8-4C2B-94B6-163E72EEC872}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC202763-09A8-4C2B-94B6-163E72EEC872}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC202763-09A8-4C2B-94B6-163E72EEC872}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC202763-09A8-4C2B-94B6-163E72EEC872}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E45F26F8-BBD8-42C8-870F-F9EDBA365DCB} = {1EA9706B-D2A9-4F09-BB5C-0827F2BC5AC2}
+		{2F04D0C8-6E97-44F7-96DF-B8D86EBAB110} = {1EA9706B-D2A9-4F09-BB5C-0827F2BC5AC2}
+		{E86FFD21-8970-4D8D-8285-6032C840133E} = {1EA9706B-D2A9-4F09-BB5C-0827F2BC5AC2}
+		{5F32B101-D2A2-41EB-984C-8D2F5E297619} = {1EA9706B-D2A9-4F09-BB5C-0827F2BC5AC2}
+		{B16FBAB4-9865-4238-A73E-35C9B7704161} = {ABF534CD-C52D-4936-9DC8-73E90C256969}
+		{6311D283-9147-45B7-897E-72E27F829644} = {ABF534CD-C52D-4936-9DC8-73E90C256969}
+		{5277EDFE-EB9E-4645-AA69-229E436D5AA7} = {ABF534CD-C52D-4936-9DC8-73E90C256969}
+		{EC202763-09A8-4C2B-94B6-163E72EEC872} = {1EA9706B-D2A9-4F09-BB5C-0827F2BC5AC2}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EB97774E-5EC5-46C5-A62F-E6B5DF610E71}
+	EndGlobalSection
+EndGlobal
