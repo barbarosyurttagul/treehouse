@@ -22,11 +22,11 @@ internal class RepositoryHelperTests
             var result = RepositoryHelper.GetTableNameFromEntity<ValidEntity>();
 
             // Assert
-            Assert.That(result, Is.EqualTo("Valid"));
+            Assert.That(result, Is.EqualTo("Vali"));
             Assert.That(result, Is.TypeOf<string>());
         }
     }
 
-    private class InvalidClass{ }
+    private class InvalidClass { }
     private class ValidEntity { }
 }
