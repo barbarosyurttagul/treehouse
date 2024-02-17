@@ -1,10 +1,15 @@
 
+using Barbarosoft.TreeHouse.Repository.SqlRepository;
+using Barbarosoft.TreeHouse.Repository.SqlRepository.Contexts;
+using Microsoft.EntityFrameworkCore;
+
 namespace Barbarosoft.TreeHouse.WebApi
 {
     public class Program
     {
         public static void Main(string[] args)
         {
+
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
@@ -13,6 +18,13 @@ namespace Barbarosoft.TreeHouse.WebApi
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            // AddDbContext
+            builder.Services.AddDbContext<CourseApplicationContext>(options =>
+                    options.UseSqlServer(
+                        builder.Configuration.GetConnectionString(SqlConstants.ConnectionStringKey))
+                    );
+            builder.Services.AddScoped<ICourseApplicationContext, CourseApplicationContext>();
 
             var app = builder.Build();
 
