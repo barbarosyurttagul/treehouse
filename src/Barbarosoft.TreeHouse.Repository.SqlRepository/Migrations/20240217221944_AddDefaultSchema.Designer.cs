@@ -3,6 +3,7 @@ using Barbarosoft.TreeHouse.Repository.SqlRepository.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Barbarosoft.TreeHouse.Repository.SqlRepository.Migrations
 {
     [DbContext(typeof(CourseApplicationContext))]
-    partial class CourseApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20240217221944_AddDefaultSchema")]
+    partial class AddDefaultSchema
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
