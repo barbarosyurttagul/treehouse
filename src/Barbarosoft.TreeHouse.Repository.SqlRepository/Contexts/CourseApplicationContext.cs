@@ -18,5 +18,6 @@ public class CourseApplicationContext : DbContext, ICourseApplicationContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        modelBuilder.HasDefaultSchema(SqlConstants.CourseAppSchema);
     }
 }
