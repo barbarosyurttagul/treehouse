@@ -10,4 +10,12 @@
     <Folder Include="Contexts\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="../Barbarosoft.TreeHouse.Domain.Model/Barbarosoft.TreeHouse.Domain.Model.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.2" />
+  </ItemGroup>
+
 </Project>
