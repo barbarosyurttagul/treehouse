@@ -27,6 +27,40 @@ internal class RepositoryHelperTests
         }
     }
 
+    internal class GetPluralTableNameFromEntity : RepositoryHelperTests
+    {
+        [Test]
+        public void ReturnsPluralNamesWhenEntityEndsWithS()
+        {
+            // act
+            var result = RepositoryHelper.GetPluralTableNameFromEntity<TossEntity>();
+
+            // assert
+            Assert.That(result, Is.EqualTo("Tosses"));
+        }
+
+        [Test]
+        public void ReturnsPluralNamesWhenEntityEndsWithY()
+        {
+            // act
+            var result = RepositoryHelper.GetPluralTableNameFromEntity<CategoryEntity>();
+
+            // assert
+            Assert.That(result, Is.EqualTo("Categories"));
+        }
+
+        [Test]
+        public void ReturnsPluralNamesWhenDoesNotMatchInAllCases()
+        {
+            // act
+            var result = RepositoryHelper.GetPluralTableNameFromEntity<ValidEntity>();
+
+            //assert
+            Assert.That(result, Is.EqualTo("Valids"));
+        }
+    }
     private class InvalidClass { }
     private class ValidEntity { }
+    private class TossEntity { }
+    private class CategoryEntity { }
 }
