@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Barbarosoft.TreeHouse.Domain.Model\Barbarosoft.TreeHouse.Domain.Model.csproj" />
+  </ItemGroup>
+
 </Project>

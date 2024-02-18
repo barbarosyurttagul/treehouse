@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "name": "C#: Barbarosoft.TreeHouse.Repository.SqlRepository.Tests",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}/tests/Barbarosoft.TreeHouse.Repository.SqlRepository.Tests/Barbarosoft.TreeHouse.Repository.SqlRepository.Tests.csproj",
+            "launchConfigurationId": "TargetFramework=;Barbarosoft.TreeHouse.Repository.SqlRepository.Tests"
+        }
+    ]
+}

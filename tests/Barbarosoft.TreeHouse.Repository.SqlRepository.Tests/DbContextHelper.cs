@@ -30,4 +30,18 @@ internal static class DbContextHelper
 
         return options.Options;
     }
+
+    public static void ResetDatabase()
+    {
+        Context.Database.EnsureDeleted();
+    }
+
+    public static DbSet<TEntity> Add<TEntity>(TEntity entity) where TEntity : class
+    {
+        var set = Context.Set<TEntity>();
+        set.Add(entity);
+        Context.SaveChanges();
+
+        return set;
+    }
 }
