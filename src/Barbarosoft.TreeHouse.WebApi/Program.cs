@@ -22,7 +22,7 @@ namespace Barbarosoft.TreeHouse.WebApi
             // AddDbContext
             builder.Services.AddDbContext<CourseApplicationContext>(options =>
                     options.UseSqlServer(
-                        builder.Configuration.GetConnectionString(SqlConstants.ConnectionStringKey))
+                        Environment.GetEnvironmentVariable("SQL_CONNECTION"))
                     );
             builder.Services.AddScoped<ICourseApplicationContext, CourseApplicationContext>();
 
