@@ -1,7 +1,5 @@
 using Barbarosoft.TreeHouse.Repository.SqlRepository.Contexts;
 using Barbarosoft.TreeHouse.Domain.Model;
-using NUnit.Framework;
-using NSubstitute;
 using Barbarosoft.TreeHouse.Domain.Ports;
 using Barbarosoft.TreeHouse.Repository.SqlRepository.Repositories;
 
