@@ -20,7 +20,7 @@ internal class CourseRepositoryTests
     }
 
     [Test]
-    public void ReturnsAllCourses()
+    public async Task ReturnsAllCourses()
     {
         // Arrange
         DbContextHelper.Add(new CourseEntity
@@ -35,7 +35,7 @@ internal class CourseRepositoryTests
         });
 
         // Act
-        var courses = _courseRepository.GetAll();
+        var courses = await _courseRepository.GetAll();
 
         // Assert
         Assert.That(courses.Count(), Is.EqualTo(2));
