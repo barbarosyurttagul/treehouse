@@ -14,7 +14,13 @@
     <PackageReference Include="NUnit" Version="3.13.3" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.2.1" />
     <PackageReference Include="NUnit.Analyzers" Version="3.6.1" />
+    <PackageReference Include="NSubstitute" Version="5.1.0" />
     <PackageReference Include="coverlet.collector" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../../src/Barbarosoft.TreeHouse.Domain.Ports/Barbarosoft.TreeHouse.Domain.Ports.csproj"/>
+    <ProjectReference Include="../../src/Barbarosoft.TreeHouse.Service/Barbarosoft.TreeHouse.Service.csproj"/>
   </ItemGroup>
 
 </Project>
