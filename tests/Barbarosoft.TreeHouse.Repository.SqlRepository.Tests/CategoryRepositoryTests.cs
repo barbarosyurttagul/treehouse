@@ -20,7 +20,7 @@ internal class CategoryRepositoryTests
     }
 
     [Test]
-    public void ReturnsAllCategories()
+    public async Task ReturnsAllCategories()
     {
         // Arrange
         DbContextHelper.Add(new CategoryEntity
@@ -35,7 +35,7 @@ internal class CategoryRepositoryTests
         });
 
         // Act
-        var categories = _categoryRepository.GetAll();
+        var categories = await _categoryRepository.GetAll();
 
         // Assert
         Assert.That(categories.Count(), Is.EqualTo(2));

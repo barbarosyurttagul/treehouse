@@ -4,6 +4,6 @@ namespace Barbarosoft.TreeHouse.Domain.Ports;
 
 public interface ICategoryRepository
 {
-    IEnumerable<CategoryEntity> GetAll();
+    Task<CategoryEntity[]> GetAll();
     CategoryEntity GetById(int categoryId);
 }
