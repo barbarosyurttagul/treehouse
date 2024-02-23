@@ -4,6 +4,6 @@ namespace Barbarosoft.TreeHouse.Domain.Ports;
 
 public interface ICourseRepository
 {
-    IEnumerable<CourseEntity> GetAll();
+    Task<CourseEntity[]> GetAll();
     Task<CourseEntity[]> GetByCategoryId(int categoryId);
 }

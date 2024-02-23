@@ -14,9 +14,9 @@ public class CourseRepository : ICourseRepository
         _courseApplicationContext = courseApplicationContext;
     }
 
-    public IEnumerable<CourseEntity> GetAll()
+    public async Task<CourseEntity[]> GetAll()
     {
-        return _courseApplicationContext.Courses.ToList();
+        return await _courseApplicationContext.Courses.ToArrayAsync();
     }
 
     public async Task<CourseEntity[]> GetByCategoryId(int categoryId)
