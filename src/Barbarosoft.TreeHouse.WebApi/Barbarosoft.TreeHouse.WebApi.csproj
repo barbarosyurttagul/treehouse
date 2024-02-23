@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="../Barbarosoft.TreeHouse.Repository.SqlRepository/Barbarosoft.TreeHouse.Repository.SqlRepository.csproj" />
+    <ProjectReference Include="../Barbarosoft.TreeHouse.Service/Barbarosoft.TreeHouse.Service.csproj"/>
   </ItemGroup>
 
   <ItemGroup>

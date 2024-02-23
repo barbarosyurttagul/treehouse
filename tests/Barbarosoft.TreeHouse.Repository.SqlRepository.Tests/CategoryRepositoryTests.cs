@@ -42,7 +42,7 @@ internal class CategoryRepositoryTests
     }
 
     [Test]
-    public void ReturnsCategoryById()
+    public async Task ReturnsCategoryById()
     {
         // Arrange
         int id = 3;
@@ -54,7 +54,7 @@ internal class CategoryRepositoryTests
         });
 
         // Act
-        var category = _categoryRepository.GetById(id);
+        var category = await _categoryRepository.GetById(id);
 
         // Assert
         Assert.That(category.Name, Is.EqualTo(categoryName));
@@ -65,9 +65,9 @@ internal class CategoryRepositoryTests
     {
         var categoryId = -1;
         // Act
-        Assert.Throws<NullReferenceException>(() =>
+        Assert.ThrowsAsync<NullReferenceException>(async () =>
         {
-            _categoryRepository.GetById(categoryId);
+            await _categoryRepository.GetById(categoryId);
         });
     }
 }

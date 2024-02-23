@@ -1,6 +1,7 @@
 
 using Barbarosoft.TreeHouse.Repository.SqlRepository;
 using Barbarosoft.TreeHouse.Repository.SqlRepository.Contexts;
+using Barbarosoft.TreeHouse.Service;
 using Microsoft.EntityFrameworkCore;
 
 namespace Barbarosoft.TreeHouse.WebApi
@@ -25,6 +26,7 @@ namespace Barbarosoft.TreeHouse.WebApi
                         Environment.GetEnvironmentVariable("SQL_CONNECTION"))
                     );
             builder.Services.AddScoped<ICourseApplicationContext, CourseApplicationContext>();
+            builder.Services.AddScoped<ICategoryService, CategoryService>();
 
             var app = builder.Build();
 

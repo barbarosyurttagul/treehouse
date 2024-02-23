@@ -18,9 +18,9 @@ public class CategoryRepository : ICategoryRepository
         return await _context.Categories.ToArrayAsync();
     }
 
-    public CategoryEntity GetById(int categoryId)
+    public async Task<CategoryEntity> GetById(int categoryId)
     {
-        var category = _context.Categories.FirstOrDefault(x => x.CategoryId == categoryId);
+        var category = await _context.Categories.FirstOrDefaultAsync(x => x.CategoryId == categoryId);
         if (category == null)
             throw new NullReferenceException();
         return category;

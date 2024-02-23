@@ -5,5 +5,5 @@ namespace Barbarosoft.TreeHouse.Domain.Ports;
 public interface ICategoryRepository
 {
     Task<CategoryEntity[]> GetAll();
-    CategoryEntity GetById(int categoryId);
+    Task<CategoryEntity> GetById(int categoryId);
 }
