@@ -1,6 +1,7 @@
 ﻿using Barbarosoft.TreeHouse.Domain.Model;
 using Barbarosoft.TreeHouse.Domain.Ports;
 using Barbarosoft.TreeHouse.Repository.SqlRepository.Contexts;
+using Microsoft.EntityFrameworkCore;
 
 namespace Barbarosoft.TreeHouse.Repository.SqlRepository.Repositories;
 
@@ -12,9 +13,9 @@ public class CategoryRepository : ICategoryRepository
     {
         _context = context;
     }
-    public IEnumerable<CategoryEntity> GetAll()
+    public async Task<CategoryEntity[]> GetAll()
     {
-        return _context.Categories.ToList();
+        return await _context.Categories.ToArrayAsync();
     }
 
     public CategoryEntity GetById(int categoryId)
