@@ -1,6 +1,8 @@
 
+using Barbarosoft.TreeHouse.Domain.Ports;
 using Barbarosoft.TreeHouse.Repository.SqlRepository;
 using Barbarosoft.TreeHouse.Repository.SqlRepository.Contexts;
+using Barbarosoft.TreeHouse.Repository.SqlRepository.Repositories;
 using Barbarosoft.TreeHouse.Service;
 using Microsoft.EntityFrameworkCore;
 
@@ -27,6 +29,9 @@ namespace Barbarosoft.TreeHouse.WebApi
                     );
             builder.Services.AddScoped<ICourseApplicationContext, CourseApplicationContext>();
             builder.Services.AddScoped<ICategoryService, CategoryService>();
+            builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+            builder.Services.AddScoped<ICourseService, CourseService>();
+            builder.Services.AddScoped<ICourseRepository, CourseRepository>();
 
             var app = builder.Build();
 
