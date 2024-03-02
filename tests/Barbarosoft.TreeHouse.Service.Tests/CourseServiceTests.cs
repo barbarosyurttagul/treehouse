@@ -7,8 +7,8 @@ namespace Barbarosoft.TreeHouse.Service.Tests;
 [TestFixture(Category = "unit")]
 public class CourseServiceTests
 {
-    ICourseRepository _courseRepository;
-    ICourseService _courseService;
+    readonly ICourseRepository _courseRepository;
+    readonly CourseService _courseService;
 
     public CourseServiceTests()
     {
@@ -41,7 +41,7 @@ public class CourseServiceTests
         // Assert
         Assert.Multiple(() =>
         {
-            Assert.That(courses.Length, Is.EqualTo(1));
+            Assert.That(courses, Has.Length.EqualTo(1));
             Assert.That(courses[0].Name, Is.EqualTo(courseName));
         });
     }

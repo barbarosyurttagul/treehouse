@@ -14,9 +14,9 @@ public static class RepositoryHelper
     public static string GetPluralTableNameFromEntity<T>()
     {
         var name = GetTableNameFromEntity<T>();
-        if (name.EndsWith("s"))
+        if (name.EndsWith('s'))
             return $"{name}es";
-        else if (name.EndsWith("y"))
+        else if (name.EndsWith('y'))
             return $"{name.Substring(0, name.Length - 1)}ies";
         return $"{name}s";
     }

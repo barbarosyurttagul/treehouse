@@ -5,7 +5,7 @@ namespace Barbarosoft.TreeHouse.Service;
 
 public class CategoryService : ICategoryService
 {
-    ICategoryRepository _categoryRepository;
+    readonly ICategoryRepository _categoryRepository;
 
     public CategoryService(ICategoryRepository categoryRepository)
     {
