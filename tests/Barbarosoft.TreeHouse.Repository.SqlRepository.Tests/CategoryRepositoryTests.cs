@@ -33,8 +33,11 @@ public class CategoryRepositoryTests
         var contextField = typeof(CategoryRepository).GetField("_context", BindingFlags.NonPublic | BindingFlags.Instance);
         var actualContext = contextField!.GetValue(repository);
 
-        Assert.That(actualContext, Is.EqualTo(context));
-        Assert.That(_categoryRepository, Is.Not.Null);
+        Assert.Multiple(() =>
+        {
+            Assert.That(actualContext, Is.EqualTo(context));
+            Assert.That(_categoryRepository, Is.Not.Null);
+        });
     }
 
     [Test]

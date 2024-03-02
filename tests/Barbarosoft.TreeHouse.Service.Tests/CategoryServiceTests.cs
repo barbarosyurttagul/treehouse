@@ -47,7 +47,7 @@ public class CategoryServiceTests
         {
             Assert.That(categories[0].Name, Is.EqualTo(categoryName));
             Assert.That(categories[0].CategoryId, Is.EqualTo(categoryId));
-            Assert.That(categories.Length, Is.EqualTo(1));
+            Assert.That(categories, Has.Length.EqualTo(1));
         });
     }
 

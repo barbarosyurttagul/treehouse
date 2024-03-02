@@ -20,8 +20,11 @@ public class RepositoryHelperTests
         var result = RepositoryHelper.GetTableNameFromEntity<ValidEntity>();
 
         // Assert
-        Assert.That(result, Is.EqualTo("Valid"));
-        Assert.That(result, Is.TypeOf<string>());
+        Assert.Multiple(() =>
+        {
+            Assert.That(result, Is.EqualTo("Valid"));
+            Assert.That(result, Is.TypeOf<string>());
+        });
     }
 
     [Test]
