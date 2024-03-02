@@ -19,7 +19,7 @@ public class InstructorRepository : IInstructorRepository
             .FirstOrDefaultAsync(x => x.InstructorId == instructorId);
         if (instructor != null)
             return instructor;
-        throw new ArgumentNullException("instructorId");
+        throw new ArgumentNullException(nameof(instructorId));
     }
 
     public async Task<InstructorEntity[]> ListAsync()

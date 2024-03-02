@@ -1,12 +1,11 @@
 using Barbarosoft.TreeHouse.Domain.Model;
-using Barbarosoft.TreeHouse.Domain.Ports;
 using Barbarosoft.TreeHouse.Repository.SqlRepository.Contexts;
 using Barbarosoft.TreeHouse.Repository.SqlRepository.Repositories;
 
 namespace Barbarosoft.TreeHouse.Repository.SqlRepository.Tests;
 
 [TestFixture(Category = "unit")]
-internal class CourseRepositoryTests
+public class CourseRepositoryTests
 {
     ICourseApplicationContext _courseApplicationContext;
     CourseRepository _courseRepository;
