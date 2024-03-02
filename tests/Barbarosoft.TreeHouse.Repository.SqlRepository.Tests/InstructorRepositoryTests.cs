@@ -1,12 +1,11 @@
 using Barbarosoft.TreeHouse.Domain.Model;
-using Barbarosoft.TreeHouse.Domain.Ports;
 using Barbarosoft.TreeHouse.Repository.SqlRepository.Contexts;
 using Barbarosoft.TreeHouse.Repository.SqlRepository.Repositories;
 
 namespace Barbarosoft.TreeHouse.Repository.SqlRepository.Tests;
 
 [TestFixture(Category = "unit")]
-internal class InstructorRepositoryTests
+public class InstructorRepositoryTests
 {
     ICourseApplicationContext _courseApplicationContext;
     InstructorRepository _instructorRepository;
@@ -71,15 +70,16 @@ internal class InstructorRepositoryTests
     }
 
     [Test]
-    public void ThrowsNullReferenceExceptionInstructorHasNoCourse()
+    public void ThrowsArgumentNullExceptionWhenInstructorHasNoCourse()
     {
         // Arrange
         int instructorId = -1;
 
         // Act-Assert
-        Assert.ThrowsAsync<ArgumentNullException>(async () =>
+        var exception = Assert.ThrowsAsync<ArgumentNullException>(async () =>
         {
             await _instructorRepository.GetById(instructorId);
         });
+        Assert.That(exception.ParamName, Is.EqualTo(nameof(instructorId)));
     }
 }

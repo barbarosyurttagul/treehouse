@@ -22,7 +22,7 @@ public class CategoryRepository : ICategoryRepository
     {
         var category = await _context.Categories.FirstOrDefaultAsync(x => x.CategoryId == categoryId);
         if (category == null)
-            throw new ArgumentNullException("categoryId");
+            throw new ArgumentNullException(nameof(categoryId));
         return category;
     }
 }
