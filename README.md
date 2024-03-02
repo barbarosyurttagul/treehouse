@@ -1,4 +1,4 @@
-# TREEHOUSE
+# TREEHOUSE - TDD First Project
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=barbarosyurttagul_treehouse&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=barbarosyurttagul_treehouse)  
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=barbarosyurttagul_treehouse&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=barbarosyurttagul_treehouse)  
