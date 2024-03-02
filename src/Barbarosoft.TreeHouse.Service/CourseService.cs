@@ -5,7 +5,7 @@ namespace Barbarosoft.TreeHouse.Service;
 
 public class CourseService : ICourseService
 {
-    ICourseRepository _courseRepository;
+    readonly ICourseRepository _courseRepository;
     public CourseService(ICourseRepository courseRepository)
     {
         _courseRepository = courseRepository;

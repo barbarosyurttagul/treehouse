@@ -7,8 +7,8 @@ namespace Barbarosoft.TreeHouse.Service.Tests;
 [TestFixture(Category = "unit")]
 public class CategoryServiceTests
 {
-    private ICategoryRepository _categoryRepositorySub;
-    private ICategoryService _categoryServiceSub;
+    private readonly ICategoryRepository _categoryRepositorySub;
+    private readonly CategoryService _categoryServiceSub;
 
     public CategoryServiceTests()
     {
@@ -19,7 +19,6 @@ public class CategoryServiceTests
     [Test]
     public async Task CallsExpectedMethodsWhenGettingAllCategories()
     {
-
         // Act
         await _categoryServiceSub.GetAll();
 

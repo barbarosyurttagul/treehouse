@@ -7,7 +7,7 @@ namespace Barbarosoft.TreeHouse.Repository.SqlRepository.Repositories;
 
 public class InstructorRepository : IInstructorRepository
 {
-    ICourseApplicationContext _courseApplicationContext;
+    readonly ICourseApplicationContext _courseApplicationContext;
     public InstructorRepository(ICourseApplicationContext courseApplicationContext)
     {
         _courseApplicationContext = courseApplicationContext;
@@ -19,7 +19,7 @@ public class InstructorRepository : IInstructorRepository
             .FirstOrDefaultAsync(x => x.InstructorId == instructorId);
         if (instructor != null)
             return instructor;
-        throw new NullReferenceException();
+        throw new ArgumentNullException("instructorId");
     }
 
     public async Task<InstructorEntity[]> ListAsync()

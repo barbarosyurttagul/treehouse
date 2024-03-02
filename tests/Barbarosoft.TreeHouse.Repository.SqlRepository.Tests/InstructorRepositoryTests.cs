@@ -9,7 +9,7 @@ namespace Barbarosoft.TreeHouse.Repository.SqlRepository.Tests;
 internal class InstructorRepositoryTests
 {
     ICourseApplicationContext _courseApplicationContext;
-    IInstructorRepository _instructorRepository;
+    InstructorRepository _instructorRepository;
 
     [SetUp]
     public void BeforeEach()
@@ -33,7 +33,7 @@ internal class InstructorRepositoryTests
         var instructors = await _instructorRepository.ListAsync();
 
         // Assert
-        Assert.That(instructors.Length, Is.EqualTo(1));
+        Assert.That(instructors, Has.Length.EqualTo(1));
     }
 
     [Test]
@@ -77,7 +77,7 @@ internal class InstructorRepositoryTests
         int instructorId = -1;
 
         // Act-Assert
-        Assert.ThrowsAsync<NullReferenceException>(async () =>
+        Assert.ThrowsAsync<ArgumentNullException>(async () =>
         {
             await _instructorRepository.GetById(instructorId);
         });

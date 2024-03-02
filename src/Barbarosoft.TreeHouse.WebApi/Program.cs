@@ -1,6 +1,4 @@
-
 using Barbarosoft.TreeHouse.Domain.Ports;
-using Barbarosoft.TreeHouse.Repository.SqlRepository;
 using Barbarosoft.TreeHouse.Repository.SqlRepository.Contexts;
 using Barbarosoft.TreeHouse.Repository.SqlRepository.Repositories;
 using Barbarosoft.TreeHouse.Service;
@@ -8,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Barbarosoft.TreeHouse.WebApi
 {
-    public class Program
+    public static class Program
     {
         public static void Main(string[] args)
         {

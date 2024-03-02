@@ -7,7 +7,7 @@ namespace Barbarosoft.TreeHouse.Repository.SqlRepository.Repositories;
 
 public class CategoryRepository : ICategoryRepository
 {
-    ICourseApplicationContext _context;
+    readonly ICourseApplicationContext _context;
 
     public CategoryRepository(ICourseApplicationContext context)
     {
@@ -22,7 +22,7 @@ public class CategoryRepository : ICategoryRepository
     {
         var category = await _context.Categories.FirstOrDefaultAsync(x => x.CategoryId == categoryId);
         if (category == null)
-            throw new NullReferenceException();
+            throw new ArgumentNullException("categoryId");
         return category;
     }
 }

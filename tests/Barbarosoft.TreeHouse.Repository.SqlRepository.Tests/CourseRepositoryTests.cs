@@ -9,7 +9,7 @@ namespace Barbarosoft.TreeHouse.Repository.SqlRepository.Tests;
 internal class CourseRepositoryTests
 {
     ICourseApplicationContext _courseApplicationContext;
-    ICourseRepository _courseRepository;
+    CourseRepository _courseRepository;
 
     [SetUp]
     public void BeforeEach()
@@ -38,7 +38,7 @@ internal class CourseRepositoryTests
         var courses = await _courseRepository.GetAll();
 
         // Assert
-        Assert.That(courses.Count(), Is.EqualTo(2));
+        Assert.That(courses, Has.Length.EqualTo(2));
     }
 
     [Test]

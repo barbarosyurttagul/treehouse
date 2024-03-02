@@ -7,7 +7,7 @@ namespace Barbarosoft.TreeHouse.Repository.SqlRepository.Repositories;
 
 public class CourseRepository : ICourseRepository
 {
-    ICourseApplicationContext _courseApplicationContext;
+    readonly ICourseApplicationContext _courseApplicationContext;
 
     public CourseRepository(ICourseApplicationContext courseApplicationContext)
     {
