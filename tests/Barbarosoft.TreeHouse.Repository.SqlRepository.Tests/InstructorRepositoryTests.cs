@@ -82,4 +82,95 @@ public class InstructorRepositoryTests
         });
         Assert.That(exception.ParamName, Is.EqualTo(nameof(instructorId)));
     }
+
+    [Test]
+    public async Task ReturnsCoursesOfInstructor()
+    {
+        // Arrange
+        var instructorId = 1;
+        var categoryId = 1;
+        var courseId = 1;
+        var categoryName = "Web";
+        var courseName = "Programming";
+        var firstName = "TestFirstName";
+        var lastName = "TestLastName";
+        AddCategoryEntity(categoryId, categoryName);
+        AddCourseEntity(courseId, courseName, categoryId);
+        AddInstructorEntity(instructorId, firstName, lastName, courseId);
+
+        // Act
+        var courses = await _instructorRepository.GetCoursesOfInstructor(instructorId);
+
+        // Assert
+        Assert.Multiple(() =>
+        {
+            Assert.That(courses, Is.TypeOf<CourseEntity[]>());
+            Assert.That(courses, Has.Length.EqualTo(1));
+        });
+    }
+
+    [Test]
+    public async Task ReturnsNoCourseForInstructorIfInstructorHasNoCourse()
+    {
+        // Arrange
+        var instructorId = 1;
+        var categoryId = 1;
+        var courseId = 1;
+        var categoryName = "Web";
+        var courseName = "Programming";
+        var firstName = "TestFirstName";
+        var lastName = "TestLastName";
+        AddCategoryEntity(categoryId, categoryName);
+        AddCourseEntity(courseId, courseName, categoryId);
+        AddInstructorEntity(instructorId, firstName, lastName, null);
+
+        // Act
+        var courses = await _instructorRepository.GetCoursesOfInstructor(instructorId);
+
+        // Assert
+        Assert.Multiple(() =>
+        {
+            Assert.That(courses, Is.TypeOf<CourseEntity[]>());
+            Assert.That(courses, Has.Length.EqualTo(0));
+        });
+    }
+
+    private void AddCategoryEntity(int categoryId, string categoryName)
+    {
+        _courseApplicationContext.Categories.Add(
+            new CategoryEntity
+            {
+                CategoryId = categoryId,
+                Name = categoryName
+            }
+        );
+        DbContextHelper.Context.SaveChanges();
+    }
+
+    private void AddCourseEntity(int courseId, string courseName, int categoryId)
+    {
+        _courseApplicationContext.Courses.Add(
+            new CourseEntity
+            {
+                CourseId = courseId,
+                Name = courseName,
+                CategoryId = categoryId
+            }
+        );
+        DbContextHelper.Context.SaveChanges();
+    }
+
+    private void AddInstructorEntity(int instructorId, string firstName, string lastName, int? courseId)
+    {
+        _courseApplicationContext.Instructors.Add(
+            new InstructorEntity
+            {
+                InstructorId = instructorId,
+                FirstName = firstName,
+                LastName = lastName,
+                CourseId = courseId
+            }
+        );
+        DbContextHelper.Context.SaveChanges();
+    }
 }

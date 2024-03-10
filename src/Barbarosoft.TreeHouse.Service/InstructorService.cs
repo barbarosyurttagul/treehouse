@@ -20,4 +20,9 @@ public class InstructorService : IInstructorService
     {
         return await _instructorRepository.GetById(instructorId);
     }
+
+    public async Task<CourseEntity[]> GetCoursesOfInstructor(int instructorId)
+    {
+        return await _instructorRepository.GetCoursesOfInstructor(instructorId);
+    }
 }

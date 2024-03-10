@@ -77,4 +77,34 @@ internal class InstructorServiceTests
             Assert.That(result.FirstName, Is.EqualTo(firstName));
         });
     }
+
+    [Test]
+    public async Task ReturnsCoursesOfInstructor()
+    {
+        // Arrange
+        var instructorId = 1;
+        var courseName = "Programming";
+        var categoryId = 1;
+        var courseId = 1;
+        _instructorRepository.GetCoursesOfInstructor(instructorId)
+        .Returns(new CourseEntity[]{
+            new CourseEntity
+            {
+                Name = courseName,
+                CategoryId = categoryId,
+                CourseId = courseId
+            }
+        });
+
+        // Act
+        var courses = await _instructorService.GetCoursesOfInstructor(instructorId);
+
+        // Assert
+        Assert.Multiple(() =>
+        {
+            Assert.That(courses, Is.TypeOf<CourseEntity[]>());
+            Assert.That(courses, Has.Length.EqualTo(1));
+        });
+
+    }
 }
