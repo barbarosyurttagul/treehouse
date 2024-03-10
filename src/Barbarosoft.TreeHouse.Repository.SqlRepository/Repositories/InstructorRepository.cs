@@ -22,6 +22,17 @@ public class InstructorRepository : IInstructorRepository
         throw new ArgumentNullException(nameof(instructorId));
     }
 
+    public async Task<CourseEntity[]> GetCoursesOfInstructor(int instructorId)
+    {
+        var courses = await (from instructor in _courseApplicationContext.Instructors
+                             join course in _courseApplicationContext.Courses
+                             on instructor.CourseId equals course.CourseId
+                             where instructor.InstructorId == instructorId
+                             select course)
+                      .ToArrayAsync();
+        return courses;
+    }
+
     public async Task<InstructorEntity[]> ListAsync()
     {
         return await _courseApplicationContext.Instructors.ToArrayAsync();
