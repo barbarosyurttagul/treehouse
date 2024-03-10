@@ -21,12 +21,10 @@ public class InstructorRepositoryTests
     public async Task ReturnsAllInstructors()
     {
         // Arrange
-        DbContextHelper.Add(new InstructorEntity
-        {
-            InstructorId = 1,
-            FirstName = "TestFirst",
-            LastName = "TestLast"
-        });
+        var instructorId = 1;
+        var firstName = "TestFirst";
+        var lastName = "TestLast";
+        AddInstructorEntity(instructorId, firstName, lastName);
 
         // Act
         var instructors = await _instructorRepository.ListAsync();
@@ -36,31 +34,19 @@ public class InstructorRepositoryTests
     }
 
     [Test]
-    public async Task ReturnsInstructorsWithCourseId()
+    public async Task ReturnsInstructorWithInstructorId()
     {
         // Arrange
         int categoryId = 1;
         int courseId = 1;
         int instructorId = 1;
         string courseName = "Full Stack Web Developer";
-        DbContextHelper.Add(new CategoryEntity
-        {
-            CategoryId = categoryId,
-            Name = "Programming"
-        });
-        DbContextHelper.Add(new CourseEntity
-        {
-            CourseId = courseId,
-            Name = courseName,
-            CategoryId = categoryId
-        });
-        DbContextHelper.Add(new InstructorEntity
-        {
-            InstructorId = instructorId,
-            FirstName = "TestFirst",
-            LastName = "TestLast",
-            CourseId = courseId
-        });
+        var categoryName = "Programming";
+        var firstName = "TestFirst";
+        var lastName = "TestLast";
+        AddCategoryEntity(categoryId, categoryName: categoryName);
+        AddCourseEntity(courseId, courseName, categoryId);
+        AddInstructorEntity(instructorId, firstName, lastName, courseId);
 
         // Act
         var instructor = await _instructorRepository.GetById(instructorId);
@@ -122,7 +108,7 @@ public class InstructorRepositoryTests
         var lastName = "TestLastName";
         AddCategoryEntity(categoryId, categoryName);
         AddCourseEntity(courseId, courseName, categoryId);
-        AddInstructorEntity(instructorId, firstName, lastName, null);
+        AddInstructorEntity(instructorId, firstName, lastName);
 
         // Act
         var courses = await _instructorRepository.GetCoursesOfInstructor(instructorId);
@@ -160,7 +146,7 @@ public class InstructorRepositoryTests
         DbContextHelper.Context.SaveChanges();
     }
 
-    private void AddInstructorEntity(int instructorId, string firstName, string lastName, int? courseId)
+    private void AddInstructorEntity(int instructorId, string firstName, string lastName, int? courseId = null)
     {
         _courseApplicationContext.Instructors.Add(
             new InstructorEntity
