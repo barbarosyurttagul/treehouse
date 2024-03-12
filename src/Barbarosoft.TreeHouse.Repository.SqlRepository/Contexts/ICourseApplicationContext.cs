@@ -7,5 +7,5 @@ public interface ICourseApplicationContext
     DbSet<CategoryEntity> Categories { get; set; }
     DbSet<CourseEntity> Courses { get; set; }
     DbSet<InstructorEntity> Instructors { get; set; }
-    void SaveChanges();
+    Task SaveChangesAsync();
 }

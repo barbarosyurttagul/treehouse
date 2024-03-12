@@ -16,7 +16,7 @@ public class InstructorRepository : IInstructorRepository
     public async Task Create(InstructorEntity instructor)
     {
         await _courseApplicationContext.Instructors.AddAsync(instructor);
-        _courseApplicationContext.SaveChanges();
+        await _courseApplicationContext.SaveChangesAsync();
     }
 
     public async Task<InstructorEntity> GetById(int instructorId)
