@@ -20,4 +20,9 @@ public class CourseApplicationContext : DbContext, ICourseApplicationContext
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         modelBuilder.HasDefaultSchema(SqlConstants.CourseAppSchema);
     }
+
+    void ICourseApplicationContext.SaveChanges()
+    {
+        base.SaveChanges();
+    }
 }

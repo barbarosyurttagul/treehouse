@@ -13,6 +13,12 @@ public class InstructorRepository : IInstructorRepository
         _courseApplicationContext = courseApplicationContext;
     }
 
+    public async Task Create(InstructorEntity instructor)
+    {
+        await _courseApplicationContext.Instructors.AddAsync(instructor);
+        _courseApplicationContext.SaveChanges();
+    }
+
     public async Task<InstructorEntity> GetById(int instructorId)
     {
         var instructor = await _courseApplicationContext.Instructors

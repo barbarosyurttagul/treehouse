@@ -105,6 +105,26 @@ internal class InstructorServiceTests
             Assert.That(courses, Is.TypeOf<CourseEntity[]>());
             Assert.That(courses, Has.Length.EqualTo(1));
         });
+    }
 
+    [Test]
+    public async Task CallsExpectedMethodsWhenCreatingInstructor()
+    {
+        // Arrange
+        int instructorId = 1;
+        var firstName = "Test_First";
+        var lastName = "Test_Last";
+        var instructorEntity = new InstructorEntity
+        {
+            InstructorId = instructorId,
+            FirstName = firstName,
+            LastName = lastName
+        };
+
+        // Act
+        await _instructorService.Create(instructorEntity);
+
+        // Assert
+        await _instructorRepository.Received(1).Create(instructorEntity);
     }
 }

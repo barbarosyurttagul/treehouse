@@ -11,6 +11,11 @@ public class InstructorService : IInstructorService
         _instructorRepository = instructorRepository;
     }
 
+    public async Task Create(InstructorEntity instructor)
+    {
+        await _instructorRepository.Create(instructor);
+    }
+
     public async Task<InstructorEntity[]> GetAll()
     {
         return await _instructorRepository.ListAsync();
