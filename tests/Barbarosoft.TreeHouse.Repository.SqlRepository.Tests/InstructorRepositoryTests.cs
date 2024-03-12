@@ -121,6 +121,31 @@ public class InstructorRepositoryTests
         });
     }
 
+    [Test]
+    public async Task ReturnsCorrectInfoWhenUserCreated()
+    {
+        // Arrange
+        var instructorId = 1;
+        var firstName = "TestFirstName";
+        var lastName = "TestLastName";
+        var instructor = new InstructorEntity
+        {
+            InstructorId = instructorId,
+            FirstName = firstName,
+            LastName = lastName
+        };
+
+        // Act
+        await _instructorRepository.Create(instructor);
+
+        // Assert
+        Assert.Multiple(() =>
+        {
+            Assert.That(_courseApplicationContext.Instructors.Count(), Is.EqualTo(1));
+            Assert.That(_courseApplicationContext.Instructors.First().FirstName, Is.EqualTo(firstName));
+        });
+    }
+
     private void AddCategoryEntity(int categoryId, string categoryName)
     {
         _courseApplicationContext.Categories.Add(

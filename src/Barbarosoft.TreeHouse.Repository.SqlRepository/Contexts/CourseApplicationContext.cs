@@ -20,4 +20,9 @@ public class CourseApplicationContext : DbContext, ICourseApplicationContext
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         modelBuilder.HasDefaultSchema(SqlConstants.CourseAppSchema);
     }
+
+    async Task ICourseApplicationContext.SaveChangesAsync()
+    {
+        await base.SaveChangesAsync();
+    }
 }
