@@ -11,6 +11,12 @@ public class CategoryService : ICategoryService
     {
         _categoryRepository = categoryRepository;
     }
+
+    public async Task Create(CategoryEntity category)
+    {
+        await _categoryRepository.Create(category);
+    }
+
     public async Task<CategoryEntity[]> GetAll()
     {
         return await _categoryRepository.GetAll();

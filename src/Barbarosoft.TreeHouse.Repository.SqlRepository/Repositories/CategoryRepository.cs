@@ -13,6 +13,13 @@ public class CategoryRepository : ICategoryRepository
     {
         _context = context;
     }
+
+    public async Task Create(CategoryEntity category)
+    {
+        await _context.Categories.AddAsync(category);
+        await _context.SaveChangesAsync();
+    }
+
     public async Task<CategoryEntity[]> GetAll()
     {
         return await _context.Categories.ToArrayAsync();

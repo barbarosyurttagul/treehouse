@@ -70,4 +70,23 @@ public class CategoryServiceTests
         await _categoryRepositorySub.Received(1).GetById(categoryId_1);
         Assert.That(category, Is.TypeOf<CategoryEntity>());
     }
+
+    [Test]
+    public async Task CallsExpectedMethodsWhenCreatingCategory()
+    {
+        // Arrange
+        int categoryId = 1;
+        string categoryName = "Programming";
+        var category = new CategoryEntity
+        {
+            CategoryId = categoryId,
+            Name = categoryName
+        };
+
+        // Act
+        await _categoryServiceSub.Create(category);
+
+        // Arrange
+        await _categoryRepositorySub.Received(1).Create(category);
+    }
 }

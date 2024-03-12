@@ -97,4 +97,27 @@ public class CategoryRepositoryTests
         });
         Assert.That(exception.ParamName, Is.EqualTo(nameof(categoryId)));
     }
+
+    [Test]
+    public async Task ReturnsCorrectInfoWhenCreatingCategory()
+    {
+        // Arrange
+        int categoryId = 3;
+        var categoryName = "programming";
+        var category = new CategoryEntity
+        {
+            CategoryId = categoryId,
+            Name = categoryName
+        };
+
+        // Act
+        await _categoryRepository.Create(category);
+
+        // Assert
+        Assert.Multiple(() =>
+        {
+            Assert.That(_courseApplicationContext.Categories.Count(), Is.EqualTo(1));
+            Assert.That(_courseApplicationContext.Categories.First().Name, Is.EqualTo(categoryName));
+        });
+    }
 }
