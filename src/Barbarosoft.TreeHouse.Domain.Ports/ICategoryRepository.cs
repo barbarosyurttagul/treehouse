@@ -6,4 +6,5 @@ public interface ICategoryRepository
 {
     Task<CategoryEntity[]> GetAll();
     Task<CategoryEntity> GetById(int categoryId);
+    Task Create(CategoryEntity category);
 }
