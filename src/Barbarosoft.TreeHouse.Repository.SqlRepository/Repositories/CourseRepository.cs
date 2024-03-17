@@ -7,21 +7,27 @@ namespace Barbarosoft.TreeHouse.Repository.SqlRepository.Repositories;
 
 public class CourseRepository : ICourseRepository
 {
-    readonly ICourseApplicationContext _courseApplicationContext;
+    readonly ICourseApplicationContext _context;
 
-    public CourseRepository(ICourseApplicationContext courseApplicationContext)
+    public CourseRepository(ICourseApplicationContext context)
     {
-        _courseApplicationContext = courseApplicationContext;
+        _context = context;
+    }
+
+    public async Task Create(CourseEntity courseEntity)
+    {
+        await _context.Courses.AddAsync(courseEntity);
+        await _context.SaveChangesAsync();
     }
 
     public async Task<CourseEntity[]> GetAll()
     {
-        return await _courseApplicationContext.Courses.ToArrayAsync();
+        return await _context.Courses.ToArrayAsync();
     }
 
     public async Task<CourseEntity[]> GetByCategoryId(int categoryId)
     {
-        return await _courseApplicationContext.Courses
+        return await _context.Courses
             .Where(x => x.CategoryId == categoryId)
             .ToArrayAsync();
     }

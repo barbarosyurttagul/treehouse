@@ -7,15 +7,15 @@ namespace Barbarosoft.TreeHouse.Repository.SqlRepository.Tests;
 [TestFixture(Category = "unit")]
 public class CourseRepositoryTests
 {
-    ICourseApplicationContext _courseApplicationContext;
+    ICourseApplicationContext _context;
     CourseRepository _courseRepository;
 
     [SetUp]
     public void BeforeEach()
     {
         DbContextHelper.ResetDatabase();
-        _courseApplicationContext = DbContextHelper.Context;
-        _courseRepository = new CourseRepository(_courseApplicationContext);
+        _context = DbContextHelper.Context;
+        _courseRepository = new CourseRepository(_context);
     }
 
     [Test]
@@ -63,5 +63,30 @@ public class CourseRepositoryTests
 
         // Assert
         Assert.That(courses[0].Name, Is.EqualTo(courseName));
+    }
+
+    [Test]
+    public async Task ReturnsCorrectInfoWhenCreatingCourse()
+    {
+        // Arrange
+        int courseId = 1;
+        int categoryId = 1;
+        string courseName = "Programming";
+        var course = new CourseEntity
+        {
+            CourseId = courseId,
+            Name = courseName,
+            CategoryId = categoryId
+        };
+
+        // Act
+        await _courseRepository.Create(course);
+
+        // Assert
+        Assert.Multiple(() =>
+        {
+            Assert.That(_context.Courses.Count(), Is.EqualTo(1));
+            Assert.That(_context.Courses.First().Name, Is.EqualTo(courseName));
+        });
     }
 }
