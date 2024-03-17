@@ -11,6 +11,11 @@ public class CourseService : ICourseService
         _courseRepository = courseRepository;
     }
 
+    public async Task Create(CourseEntity courseEntity)
+    {
+        await _courseRepository.Create(courseEntity);
+    }
+
     public Task<CourseEntity[]> GetAll()
     {
         return _courseRepository.GetAll();

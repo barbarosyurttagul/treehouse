@@ -67,4 +67,25 @@ public class CourseServiceTests
             Assert.That(courses[0].Name, Is.EqualTo(courseName));
         });
     }
+
+    [Test]
+    public async Task CallsExpectedMethodsWhenCreatingCategory()
+    {
+        // Arrange
+        int courseId = 1;
+        int categoryId = 1;
+        string courseName = "Programming";
+        var course = new CourseEntity
+        {
+            CourseId = courseId,
+            Name = courseName,
+            CategoryId = categoryId
+        };
+
+        // Act
+        await _courseService.Create(course);
+
+        // Arrange
+        await _courseRepository.Received(1).Create(course);
+    }
 }
