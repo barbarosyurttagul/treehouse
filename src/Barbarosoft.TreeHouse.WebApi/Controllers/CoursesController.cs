@@ -17,35 +17,35 @@ public class CoursesController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult> Create([FromBody] CreateCourseDto courseDto)
+    public async Task<ActionResult> Create([FromBody] CreateCourseRequest courseRequest)
     {
-        if (!IsBodyValid(courseDto))
+        if (!IsBodyValid(courseRequest))
         {
             return BadRequest();
         }
-        var course = MapCreateCourseDto(courseDto);
+        var course = MapCreateCourseDto(courseRequest);
         await _courseService.Create(course);
         return Created(new Uri($"{Request.Path}", UriKind.Relative), course);
     }
 
-    private CourseEntity MapCreateCourseDto(CreateCourseDto createCourseDto)
+    private CourseEntity MapCreateCourseDto(CreateCourseRequest courseRequest)
     {
         var course = new CourseEntity
         {
-            Name = createCourseDto.Name!,
-            CategoryId = createCourseDto.CategoryId
+            Name = courseRequest.Name!,
+            CategoryId = courseRequest.CategoryId
         };
 
         return course;
     }
 
-    private bool IsBodyValid(CreateCourseDto createCourseDto)
+    private bool IsBodyValid(CreateCourseRequest courseRequest)
     {
-        if (createCourseDto.Name.IsNullOrEmpty())
+        if (courseRequest.Name.IsNullOrEmpty())
         {
             return false;
         }
-        else if (createCourseDto.CategoryId <= 0)
+        else if (courseRequest.CategoryId <= 0)
         {
             return false;
         }
