@@ -5,7 +5,12 @@
     <PackageReference Include="NUnit" />
     <PackageReference Include="NUnit3TestAdapter" />
     <PackageReference Include="NUnit.Analyzers" />
+    <PackageReference Include="NSubstitute" />
     <PackageReference Include="coverlet.collector" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Barbarosoft.TreeHouse.WebApi\Barbarosoft.TreeHouse.WebApi.csproj" />
   </ItemGroup>
 
 </Project>
