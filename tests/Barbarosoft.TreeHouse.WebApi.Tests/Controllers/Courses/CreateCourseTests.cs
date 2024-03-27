@@ -23,11 +23,7 @@ internal class CreateCourseTests
         // Arrange
         var courseName = "Programming";
         var categoryId = 1;
-        var courseDto = new CreateCourseDto
-        {
-            Name = courseName,
-            CategoryId = categoryId
-        };
+        CreateCourseRequest courseDto = new(Name: courseName, CategoryId: categoryId);
         var expectedCourse = new CourseEntity
         {
             Name = courseName,
@@ -55,10 +51,7 @@ internal class CreateCourseTests
     {
         // Arrange
         var categoryId = 1;
-        var courseDto = new CreateCourseDto
-        {
-            CategoryId = categoryId
-        };
+        CreateCourseRequest courseDto = new(Name: null!, CategoryId: categoryId);
         var _coursesController = new CoursesController(_courseService);
 
         // Act
@@ -74,11 +67,7 @@ internal class CreateCourseTests
     {
         // Arrange
         var courseName = "Programming";
-        var courseDto = new CreateCourseDto
-        {
-            Name = courseName,
-            CategoryId = categoryId
-        };
+        CreateCourseRequest courseDto = new(Name: courseName, CategoryId: categoryId);
         var _coursesController = new CoursesController(_courseService);
 
         // Act
