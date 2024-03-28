@@ -6,5 +6,5 @@ public interface ICourseService
 {
     Task<CourseEntity[]> GetAll();
     Task<CourseEntity[]> GetByCategoryId(int categoryId);
-    Task Create(CourseEntity courseEntity);
+    Task<ServiceResult> Create(CourseEntity courseEntity);
 }

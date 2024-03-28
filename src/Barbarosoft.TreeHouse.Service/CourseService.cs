@@ -11,9 +11,20 @@ public class CourseService : ICourseService
         _courseRepository = courseRepository;
     }
 
-    public async Task Create(CourseEntity courseEntity)
+    public async Task<ServiceResult> Create(CourseEntity courseEntity)
     {
+        var courseNameIsNull = IsCourseNameNull(courseEntity.Name);
+        if (courseNameIsNull)
+        {
+            return new ServiceResult("Course name can not be null");
+        }
+        var categoryIdInvalid = IsCategoryIdNull(courseEntity.CategoryId);
+        if (categoryIdInvalid)
+        {
+            return new ServiceResult("Category Id can not be equal or less than 0");
+        }
         await _courseRepository.Create(courseEntity);
+        return new ServiceResult();
     }
 
     public Task<CourseEntity[]> GetAll()
@@ -24,5 +35,22 @@ public class CourseService : ICourseService
     public Task<CourseEntity[]> GetByCategoryId(int categoryId)
     {
         return _courseRepository.GetByCategoryId(categoryId);
+    }
+
+    private bool IsCourseNameNull(string courseName)
+    {
+        if (courseName is null)
+        {
+            return true;
+        }
+        return false;
+    }
+    private bool IsCategoryIdNull(int categoryId)
+    {
+        if (categoryId <= 0)
+        {
+            return true;
+        }
+        return false;
     }
 }

@@ -7,6 +7,9 @@ namespace Barbarosoft.TreeHouse.Service.Tests;
 [TestFixture(Category = "unit")]
 public class CourseServiceTests
 {
+    private const string CourseName = "Programming";
+    private const int CourseId = 1;
+    private const int CategoryId = 1;
     readonly ICourseRepository _courseRepository;
     readonly CourseService _courseService;
 
@@ -30,9 +33,8 @@ public class CourseServiceTests
     public async Task ReturnsAllCoursesWhenGetAll()
     {
         // Arrange
-        var courseName = "C#";
         _courseRepository.GetAll().Returns(new CourseEntity[]{
-            new CourseEntity{CourseId = 1, Name = courseName, CategoryId = 2}
+            new CourseEntity{CourseId = CourseId, Name = CourseName, CategoryId = CategoryId}
         });
 
         // Act
@@ -42,7 +44,7 @@ public class CourseServiceTests
         Assert.Multiple(() =>
         {
             Assert.That(courses, Has.Length.EqualTo(1));
-            Assert.That(courses[0].Name, Is.EqualTo(courseName));
+            Assert.That(courses[0].Name, Is.EqualTo(CourseName));
         });
     }
 
@@ -50,21 +52,18 @@ public class CourseServiceTests
     public async Task ReturnsAllCoursesForGivenCategoryId()
     {
         // Arrange
-        var courseName = "C#";
-        var courseId = 1;
-        var categoryId = 2;
-        _courseRepository.GetByCategoryId(categoryId).Returns(new CourseEntity[]{
-            new CourseEntity{CourseId = courseId, Name = courseName, CategoryId = 2}
+        _courseRepository.GetByCategoryId(CategoryId).Returns(new CourseEntity[]{
+            new CourseEntity{CourseId = CourseId, Name = CourseName, CategoryId = CategoryId}
         });
 
         // Act
-        var courses = await _courseService.GetByCategoryId(categoryId);
+        var courses = await _courseService.GetByCategoryId(CategoryId);
 
         // Assert
         Assert.Multiple(() =>
         {
             Assert.That(courses, Has.Length.EqualTo(1));
-            Assert.That(courses[0].Name, Is.EqualTo(courseName));
+            Assert.That(courses[0].Name, Is.EqualTo(CourseName));
         });
     }
 
@@ -72,14 +71,11 @@ public class CourseServiceTests
     public async Task CallsExpectedMethodsWhenCreatingCategory()
     {
         // Arrange
-        int courseId = 1;
-        int categoryId = 1;
-        string courseName = "Programming";
         var course = new CourseEntity
         {
-            CourseId = courseId,
-            Name = courseName,
-            CategoryId = categoryId
+            CourseId = CourseId,
+            Name = CourseName,
+            CategoryId = CategoryId
         };
 
         // Act
@@ -87,5 +83,24 @@ public class CourseServiceTests
 
         // Arrange
         await _courseRepository.Received(1).Create(course);
+    }
+
+    [TestCase(null, 1, "Course name can not be null")]
+    [TestCase(CourseName, 0, "Category Id can not be equal or less than 0")]
+    [TestCase(CourseName, -1, "Category Id can not be equal or less than 0")]
+    public async Task ReturnsServiceResultWithCorrectMessageIfCourseNameIsNull(string courseName, int categoryId, string expectedErrorMessage)
+    {
+        // Arrange
+        var course = new CourseEntity
+        {
+            Name = courseName,
+            CategoryId = categoryId
+        };
+
+        // Act
+        var result = await _courseService.Create(course);
+
+        // Arrange
+        Assert.That(result.Message, Is.EqualTo(expectedErrorMessage));
     }
 }
