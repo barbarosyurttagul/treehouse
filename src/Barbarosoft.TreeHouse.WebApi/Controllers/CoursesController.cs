@@ -28,7 +28,7 @@ public class CoursesController : ControllerBase
         return Created(new Uri($"{Request.Path}", UriKind.Relative), course);
     }
 
-    private CourseEntity MapCreateCourseDto(CreateCourseRequest courseRequest)
+    private static CourseEntity MapCreateCourseDto(CreateCourseRequest courseRequest)
     {
         var course = new CourseEntity
         {

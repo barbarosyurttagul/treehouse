@@ -37,7 +37,7 @@ public class CourseService : ICourseService
         return _courseRepository.GetByCategoryId(categoryId);
     }
 
-    private bool IsCourseNameNull(string courseName)
+    private static bool IsCourseNameNull(string courseName)
     {
         if (courseName is null)
         {
@@ -45,7 +45,7 @@ public class CourseService : ICourseService
         }
         return false;
     }
-    private bool IsCategoryIdNull(int categoryId)
+    private static bool IsCategoryIdNull(int categoryId)
     {
         if (categoryId <= 0)
         {
