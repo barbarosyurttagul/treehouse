@@ -19,12 +19,12 @@ public class CoursesController : ControllerBase
     [HttpPost]
     public async Task<ActionResult> Create([FromBody] CreateCourseRequest courseRequest)
     {
-        if (!IsBodyValid(courseRequest))
-        {
-            return BadRequest();
-        }
         var course = MapCreateCourseDto(courseRequest);
-        await _courseService.Create(course);
+        var serviceResult = await _courseService.Create(course);
+
+        if (!serviceResult.IsSuccess)
+            return BadRequest(serviceResult.Message);
+
         return Created(new Uri($"{Request.Path}", UriKind.Relative), course);
     }
 
@@ -37,19 +37,6 @@ public class CoursesController : ControllerBase
         };
 
         return course;
-    }
-
-    private bool IsBodyValid(CreateCourseRequest courseRequest)
-    {
-        if (courseRequest.Name.IsNullOrEmpty())
-        {
-            return false;
-        }
-        else if (courseRequest.CategoryId <= 0)
-        {
-            return false;
-        }
-        return true;
     }
 }
 

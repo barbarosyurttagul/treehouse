@@ -37,6 +37,8 @@ internal class CreateCourseTests
             HttpContext = httpContext
         };
 
+        _courseService.Create(Arg.Any<CourseEntity>()).Returns(new ServiceResult());
+
         // Act
         var response = await _coursesController.Create(courseDto);
 
@@ -47,33 +49,20 @@ internal class CreateCourseTests
     }
 
     [Test]
-    public async Task ReturnsBadRequestWhenCourseNameIsNull()
+    public async Task ReturnsBadRequestWhenServiceResultIsNotSuccess()
     {
         // Arrange
         var categoryId = 1;
+        var errorMessage = "Service Result is not success";
         CreateCourseRequest courseDto = new(Name: null!, CategoryId: categoryId);
         var _coursesController = new CoursesController(_courseService);
 
-        // Act
-        var response = await _coursesController.Create(courseDto);
-
-        // Assert
-        Assert.That(response, Is.TypeOf<BadRequestResult>());
-    }
-
-    [TestCase(0)]
-    [TestCase(-1)]
-    public async Task ReturnsBadRequestIfCategoryIdIsNotValid(int categoryId)
-    {
-        // Arrange
-        var courseName = "Programming";
-        CreateCourseRequest courseDto = new(Name: courseName, CategoryId: categoryId);
-        var _coursesController = new CoursesController(_courseService);
+        _courseService.Create(Arg.Any<CourseEntity>()).Returns(new ServiceResult(errorMessage));
 
         // Act
         var response = await _coursesController.Create(courseDto);
 
         // Assert
-        Assert.That(response, Is.TypeOf<BadRequestResult>());
+        Assert.That(response, Is.TypeOf<BadRequestObjectResult>());
     }
 }
