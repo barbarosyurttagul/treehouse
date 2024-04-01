@@ -13,8 +13,8 @@ public class Localizer : ILocalizer
     }
     public string GetString(string key)
     {
-        var filePath = $"../Barbarosoft.TreeHouse.Service/Resources/{Thread.CurrentThread.CurrentCulture.Name}.json";
-        var fullFilePath = Path.GetFullPath(filePath);
+        var filePath = $"Resources/{Thread.CurrentThread.CurrentCulture.Name}.json";
+        var fullFilePath = Path.Combine(Directory.GetCurrentDirectory(), filePath);
 
         if (_fileWrapper.Exists(fullFilePath))
         {
