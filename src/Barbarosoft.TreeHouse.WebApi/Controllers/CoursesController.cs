@@ -2,7 +2,6 @@ using Barbarosoft.TreeHouse.Domain.Model;
 using Barbarosoft.TreeHouse.Service;
 using Barbarosoft.TreeHouse.WebApi.Dtos;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
 
 namespace Barbarosoft.TreeHouse.WebApi.Controllers;
 

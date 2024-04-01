@@ -1,27 +1,25 @@
 using Barbarosoft.TreeHouse.Domain.Model;
 using Barbarosoft.TreeHouse.Domain.Ports;
+using Microsoft.Extensions.Localization;
 
 namespace Barbarosoft.TreeHouse.Service;
 
 public class CourseService : ICourseService
 {
     readonly ICourseRepository _courseRepository;
-    public CourseService(ICourseRepository courseRepository)
+    private readonly IStringLocalizer _localizer;
+    public CourseService(ICourseRepository courseRepository, IStringLocalizer localizer)
     {
         _courseRepository = courseRepository;
+        _localizer = localizer;
     }
 
     public async Task<ServiceResult> Create(CourseEntity courseEntity)
     {
-        var courseNameIsNull = IsCourseNameNull(courseEntity.Name);
-        if (courseNameIsNull)
+        var validationResult = ValidateCourseEntity(courseEntity);
+        if (!validationResult.IsSuccess)
         {
-            return new ServiceResult("Course name can not be null");
-        }
-        var categoryIdInvalid = IsCategoryIdNull(courseEntity.CategoryId);
-        if (categoryIdInvalid)
-        {
-            return new ServiceResult("Category Id can not be equal or less than 0");
+            return validationResult;
         }
         await _courseRepository.Create(courseEntity);
         return new ServiceResult();
@@ -37,15 +35,30 @@ public class CourseService : ICourseService
         return _courseRepository.GetByCategoryId(categoryId);
     }
 
-    private static bool IsCourseNameNull(string courseName)
+    private ServiceResult ValidateCourseEntity(CourseEntity courseEntity)
     {
-        if (courseName is null)
+        var courseNameIsEmpty = IsCourseNameEmpty(courseEntity.Name);
+        if (courseNameIsEmpty)
+        {
+            return new ServiceResult(_localizer["course_name_can_not_be_empty"]);
+        }
+        var categoryIdInvalid = IsCategoryIdInvalid(courseEntity.CategoryId);
+        if (categoryIdInvalid)
+        {
+            return new ServiceResult(_localizer["category_id_invalid"]);
+        }
+        return new ServiceResult();
+    }
+
+    private static bool IsCourseNameEmpty(string courseName)
+    {
+        if (courseName == string.Empty)
         {
             return true;
         }
         return false;
     }
-    private static bool IsCategoryIdNull(int categoryId)
+    private static bool IsCategoryIdInvalid(int categoryId)
     {
         if (categoryId <= 0)
         {
