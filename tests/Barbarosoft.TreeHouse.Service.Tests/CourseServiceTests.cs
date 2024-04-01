@@ -1,5 +1,6 @@
 using Barbarosoft.TreeHouse.Domain.Model;
 using Barbarosoft.TreeHouse.Domain.Ports;
+using Microsoft.Extensions.Localization;
 using NSubstitute;
 
 namespace Barbarosoft.TreeHouse.Service.Tests;
@@ -12,11 +13,13 @@ public class CourseServiceTests
     private const int CategoryId = 1;
     readonly ICourseRepository _courseRepository;
     readonly CourseService _courseService;
+    readonly IStringLocalizer _localizer;
 
     public CourseServiceTests()
     {
         _courseRepository = Substitute.For<ICourseRepository>();
-        _courseService = new CourseService(_courseRepository);
+        _localizer = Substitute.For<IStringLocalizer>();
+        _courseService = new CourseService(_courseRepository, _localizer);
     }
 
     [Test]
@@ -85,10 +88,10 @@ public class CourseServiceTests
         await _courseRepository.Received(1).Create(course);
     }
 
-    [TestCase(null, 1, "Course name can not be null")]
+    [TestCase("", 1, "Course name can not be empty")]
     [TestCase(CourseName, 0, "Category Id can not be equal or less than 0")]
     [TestCase(CourseName, -1, "Category Id can not be equal or less than 0")]
-    public async Task ReturnsServiceResultWithCorrectMessageIfCourseNameIsNull(string courseName, int categoryId, string expectedErrorMessage)
+    public async Task ReturnsServiceResultWithCorrectMessageForInvalidEntries(string courseName, int categoryId, string expectedErrorMessage)
     {
         // Arrange
         var course = new CourseEntity
@@ -97,6 +100,8 @@ public class CourseServiceTests
             CategoryId = categoryId
         };
 
+        _localizer["course_name_can_not_be_empty"].Returns(new LocalizedString("course_name_can_not_be_empty", expectedErrorMessage));
+        _localizer["category_id_invalid"].Returns(new LocalizedString("category_id_invalid", expectedErrorMessage));
         // Act
         var result = await _courseService.Create(course);
 

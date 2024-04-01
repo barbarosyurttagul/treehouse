@@ -1,7 +1,6 @@
-using Barbarosoft.TreeHouse.Domain.Ports;
 using Barbarosoft.TreeHouse.Repository.SqlRepository.Contexts;
-using Barbarosoft.TreeHouse.Repository.SqlRepository.Repositories;
-using Barbarosoft.TreeHouse.Service;
+using Barbarosoft.TreeHouse.WebApi.Middlewares;
+using Barbarosoft.TreeHouse.WebApi.ServiceRegistrations;
 using Microsoft.EntityFrameworkCore;
 
 namespace Barbarosoft.TreeHouse.WebApi
@@ -14,8 +13,9 @@ namespace Barbarosoft.TreeHouse.WebApi
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-
             builder.Services.AddControllers();
+            builder.Services.AddLocalizationSupport();
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -25,13 +25,10 @@ namespace Barbarosoft.TreeHouse.WebApi
                     options.UseSqlServer(
                         Environment.GetEnvironmentVariable("SQL_CONNECTION"))
                     );
-            builder.Services.AddScoped<ICourseApplicationContext, CourseApplicationContext>();
-            builder.Services.AddScoped<ICategoryService, CategoryService>();
-            builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
-            builder.Services.AddScoped<ICourseService, CourseService>();
-            builder.Services.AddScoped<ICourseRepository, CourseRepository>();
+            builder.Services.AddServiceDependencies();
 
             var app = builder.Build();
+            app.UseLocalization();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

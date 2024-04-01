@@ -1,0 +1,4 @@
+{
+  "course_name_can_not_be_empty" : "Kurs adı boş olamaz",
+  "category_id_invalid" : "Kategori Id'si 0 veya 0'dan küçük olamaz."
+}
