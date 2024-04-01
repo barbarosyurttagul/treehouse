@@ -5,7 +5,7 @@ using NSubstitute;
 
 namespace Barbarosoft.TreeHouse.WebApi.Tests.Middlewares;
 
-[TestFixture]
+[TestFixture(Category = "unit")]
 public class LocalizationMiddlewareTests
 {
     private RequestDelegate _next;
