@@ -3,37 +3,35 @@ using Microsoft.AspNetCore.Localization;
 
 namespace Barbarosoft.TreeHouse.WebApi.Middlewares;
 
-public class LocalizationMiddleware
+public sealed class LocalizationMiddleware
 {
-    private readonly ILogger<LocalizationMiddleware> _logger;
     private readonly RequestDelegate _next;
+    private string? _culture;
 
-    public LocalizationMiddleware(ILogger<LocalizationMiddleware> logger, RequestDelegate next)
+    public string Culture { get { return _culture!; } }
+
+    public LocalizationMiddleware(RequestDelegate next)
     {
-        _logger = logger;
         _next = next;
     }
     public async Task InvokeAsync(HttpContext context)
     {
         var browserLanguage = context.Request.Headers["Accept-Language"].ToString()[..2];
-        _logger.LogInformation("Culture:" + browserLanguage);
-        string? culture;
         switch (browserLanguage)
         {
             case "tr":
-                culture = "tr-TR";
+                _culture = "tr-TR";
                 break;
             default:
-                culture = "en-US";
+                _culture = "en-US";
                 break;
         }
 
-        var requestCulture = new RequestCulture(culture);
+        var requestCulture = new RequestCulture(_culture);
         context.Features.Set<IRequestCultureFeature>(new RequestCultureFeature(requestCulture, null));
 
-        CultureInfo.CurrentCulture = new CultureInfo(culture);
-        CultureInfo.CurrentUICulture = new CultureInfo(culture);
-        _logger.LogInformation("Current Culture:" + Thread.CurrentThread.CurrentCulture.Name);
+        CultureInfo.CurrentCulture = new CultureInfo(_culture);
+        CultureInfo.CurrentUICulture = new CultureInfo(_culture);
         await _next.Invoke(context);
     }
 }
