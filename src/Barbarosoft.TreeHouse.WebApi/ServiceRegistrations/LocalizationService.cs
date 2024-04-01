@@ -9,5 +9,7 @@ public static class LocalizationService
     {
         services.AddLocalization();
         services.AddSingleton<IStringLocalizer, JsonStringLocalizer>();
+        services.AddSingleton<ILocalizer, Localizer>();
+        services.AddSingleton<IFileWrapper, FileWrapper>();
     }
 }
