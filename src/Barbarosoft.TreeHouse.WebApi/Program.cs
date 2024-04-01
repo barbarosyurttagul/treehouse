@@ -1,5 +1,5 @@
 using Barbarosoft.TreeHouse.Repository.SqlRepository.Contexts;
-using Barbarosoft.TreeHouse.WebApi.Middlewares;
+using Barbarosoft.TreeHouse.WebApi.Middlewares.Extensions;
 using Barbarosoft.TreeHouse.WebApi.ServiceRegistrations;
 using Microsoft.EntityFrameworkCore;
 

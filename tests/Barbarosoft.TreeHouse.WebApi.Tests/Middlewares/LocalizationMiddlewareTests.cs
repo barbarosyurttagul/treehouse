@@ -23,7 +23,7 @@ public class LocalizationMiddlewareTests
     {
         // Arrange
         var middleware = new LocalizationMiddleware(_next);
-        _context.Request.Headers["Accept-Language"] = "tr";
+        _context.Request.Headers.AcceptLanguage = "tr";
 
         // Act
         await middleware.InvokeAsync(_context);
@@ -31,8 +31,11 @@ public class LocalizationMiddlewareTests
         // Assert
         CultureInfo.CurrentCulture = new CultureInfo(middleware.Culture);
         CultureInfo.CurrentUICulture = new CultureInfo(middleware.Culture);
-        Assert.That(CultureInfo.CurrentCulture.Name, Is.EqualTo("tr-TR"));
-        Assert.That(CultureInfo.CurrentUICulture.Name, Is.EqualTo("tr-TR"));
+        Assert.Multiple(() =>
+        {
+            Assert.That(CultureInfo.CurrentCulture.Name, Is.EqualTo("tr-TR"));
+            Assert.That(CultureInfo.CurrentUICulture.Name, Is.EqualTo("tr-TR"));
+        });
         await _next.Received(1).Invoke(_context);
     }
 
@@ -41,7 +44,7 @@ public class LocalizationMiddlewareTests
     {
         // Arrange
         var middleware = new LocalizationMiddleware(_next);
-        _context.Request.Headers["Accept-Language"] = "de";
+        _context.Request.Headers.AcceptLanguage = "de";
 
         // Act
         await middleware.InvokeAsync(_context);
@@ -49,8 +52,11 @@ public class LocalizationMiddlewareTests
         // Assert
         CultureInfo.CurrentCulture = new CultureInfo(middleware.Culture);
         CultureInfo.CurrentUICulture = new CultureInfo(middleware.Culture);
-        Assert.That(CultureInfo.CurrentCulture.Name, Is.EqualTo("en-US"));
-        Assert.That(CultureInfo.CurrentUICulture.Name, Is.EqualTo("en-US"));
+        Assert.Multiple(() =>
+        {
+            Assert.That(CultureInfo.CurrentCulture.Name, Is.EqualTo("en-US"));
+            Assert.That(CultureInfo.CurrentUICulture.Name, Is.EqualTo("en-US"));
+        });
         await _next.Received(1).Invoke(_context);
     }
 }

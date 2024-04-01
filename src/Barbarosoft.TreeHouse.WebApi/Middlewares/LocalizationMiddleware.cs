@@ -35,11 +35,3 @@ public sealed class LocalizationMiddleware
         await _next.Invoke(context);
     }
 }
-
-public static class LocalizationMiddlewareExtensions
-{
-    public static IApplicationBuilder UseLocalization(this IApplicationBuilder app)
-    {
-        return app.UseMiddleware<LocalizationMiddleware>();
-    }
-}
